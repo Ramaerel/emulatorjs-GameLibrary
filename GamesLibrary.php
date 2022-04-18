@@ -6,7 +6,7 @@
         $romlistfin[$i] = $romlist[$i + 2];
     }
 
-    echo("<form action='chooseplay.php' method='GET' style='text-align:center;'><select name='games'>");
+    echo("<form action='GamesLibrary.php' method='GET' style='text-align:center;'><select name='games'>");
     for($i=0;$i<count($romlistfin);$i++) {
         $rom[$i] = getRomExtension($romlistfin[$i]);
         echo('<option value="'.$i.'">'.$rom[$i][0].'</option>');
