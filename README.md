@@ -3,7 +3,10 @@
 
 *A game library extension for* ***[EmulatorJS]***
 
-An addition to ethan's EmulatorJS, which is a basic games library that reads the contents of a roms folder for its library (?) as requested. Not the prettiest, but it works
+<br>
+
+This add - on reads the contents of your **ROM**s <br>
+folder and uses it to display a games library.
 
 
 <h1>Adding to the Library</h1>
