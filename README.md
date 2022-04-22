@@ -1,4 +1,8 @@
-# emulatorjs-GameLibrary
+
+# Game Library
+
+*A game library extension for* ***[EmulatorJS]***
+
 An addition to ethan's EmulatorJS, which is a basic games library that reads the contents of a roms folder for its library (?) as requested. Not the prettiest, but it works
 
 
@@ -33,4 +37,8 @@ case "3d45c1ee9abd5738df46d2bdda8b57dc":
   
   
 Add the  case statement underneath the last break; you see in Library.php. Additions to the Library on here are very welcome!
+
+<!----------------------------------------------------------------------------->
+
+[EmulatorJS]: https://github.com/ElectronicsArchiver/emulatorjs
                 
