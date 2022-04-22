@@ -50,7 +50,9 @@ break;
 
 <br>
 
-Additions to the Library on here are very welcome!
+## Contributions
+
+Additions to the library on here are very welcome!
 
 
 <!----------------------------------------------------------------------------->
