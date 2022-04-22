@@ -1,5 +1,5 @@
 
-# Game Library
+# Game Library [![Badge License]][License]
 
 *A game library extension for* ***[EmulatorJS]***
 
@@ -40,5 +40,9 @@ Add the  case statement underneath the last break; you see in Library.php. Addit
 
 <!----------------------------------------------------------------------------->
 
+[Badge License]: https://img.shields.io/badge/License-Unknown-darkgray
+
 [EmulatorJS]: https://github.com/ElectronicsArchiver/emulatorjs
+
+[License]: #
                 
