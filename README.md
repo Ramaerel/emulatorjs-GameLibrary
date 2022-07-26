@@ -24,43 +24,12 @@ it the according system .bin <br>
 
 ## Installation
 
-Please use the following template and add <br>
-the code underneath the last `break` , like <br>
-it is done in [`Library.php`]
+This is a drag and drop extension, with the <br>
+exception that it requires something to host <br>
+PHP files like XAMPP. Put your roms in the <br>
+/roms/ folder and bios in the /bios/ folder, <br>
+following the naming scheme shown here.
 
-<br>
-
-### Template
-
-```php
-case "file_MD5":
-
-$data["Name"] = Game_Name;
-
-$data["Console"] = Game_Console; // According to the EmulatorJS system abbreviations
-
-$data["Region"] = Game_Region;
-
-break;
-```
-
-<br>
-
-### Example
-
-```php
-case "3d45c1ee9abd5738df46d2bdda8b57dc":
-
-$data["Name"] = "Pokemon Red";
-
-$data["Console"] = "gb";
-
-$data["Region"] = "USA";
-
-break;
-```
-
-<br>
 
 ### Extensions
 The following extensions are used in <br>
@@ -70,7 +39,7 @@ PlayStation - .psx.*
 
 ## Contributions
 
-Additions to the library on here are very welcome!
+Any (positive) additions or changes are welcome and encouraged.
 
 
 <!----------------------------------------------------------------------------->
