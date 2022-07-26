@@ -8,6 +8,11 @@
 This add - on reads the contents of your **ROM**s <br>
 folder and uses it to display a games library.
 
+To use systems that require a bios, like psx, <br>
+add the bios under the **BIOS** folder and name <br>
+it the according system .bin <br>
+Example: psx.bin <br>
+
 <br>
 
 ## Installation
