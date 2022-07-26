@@ -35,6 +35,10 @@
     EJS_player = '#game';
     EJS_core = <?php echo("'".$gamedata[$_GET['games']]["Console"]."'"); ?>;
     EJS_gameUrl = <?php echo('"./roms/'.$romlistfin[$_GET['games']].'"'); ?>;
+    <?php if($gamedata[$_GET['games']]["Console"] == "psx") {
+        echo("EJS_biosUrl = 'psx.bin';");
+    }
+    ?>
     EJS_gameID = <?php echo($_GET['games']); ?>;
     EJS_pathtodata = 'data/';
     

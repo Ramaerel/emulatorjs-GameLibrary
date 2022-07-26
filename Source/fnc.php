@@ -117,6 +117,12 @@
                     $romdata[1] = "jaguar";
                     break;
 
+                //PSX Formats
+                case "psx":
+                    $romdata[1] = "psx";
+                    break;
+
+
             }
 
             return $romdata;
