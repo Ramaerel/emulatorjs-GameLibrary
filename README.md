@@ -57,7 +57,7 @@ Additions to the library on here are very welcome!
 
 <!----------------------------------------------------------------------------->
 
-[Badge License]: https://img.shields.io/badge/License-Unknown-darkgray
+[Badge License]: https://img.shields.io/badge/license-GPL-blue
 
 [EmulatorJS]: https://github.com/ElectronicsArchiver/emulatorjs
 
