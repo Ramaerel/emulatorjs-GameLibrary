@@ -1,6 +1,5 @@
 <?php
 
-    require './Library.php';
     require './fnc.php';
 
     $romdirectory = './roms/';
@@ -12,15 +11,10 @@
 
     echo("<form action='NewGamesLibrary.php' method='GET' style='text-align:center;'><select name='games'>");
     for($i=0;$i<count($romlistfin);$i++) {
-        $filehash = md5_file("./roms/".$romlistfin[$i]);
-        $gamedata[$i] = getFromHash($filehash);
-        if ($gamedata[$i]["Name"] == "NA") {
-            $rom[$i] = getRomExtension($romlistfin[$i]);
-            $gamedata[$i]["Name"] = $rom[$i][0];
-            $gamedata[$i]["Console"] = $rom[$i][1];
-            $gamedata[$i]["Region"] = "NID";
-        }
-        echo('<option value="'.$i.'">'.$gamedata[$i]["Name"].' ('.$gamedata[$i]["Region"].')</option>');
+        $rom[$i] = getRomExtension($romlistfin[$i]);
+        $gamedata[$i]["Name"] = $rom[$i][0];
+        $gamedata[$i]["Console"] = $rom[$i][1];
+        echo('<option value="'.$i.'">'.$gamedata[$i]["Name"].' ('.$gamedata[$i]["Console"].')</option>');
     }
     echo("</select><input type='submit' value='Play'></form>");
 
