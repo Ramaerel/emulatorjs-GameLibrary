@@ -89,7 +89,7 @@
                     $romdata[1] = "n64";
                     break;
                 case "z64";
-                    $romdata[1] = "z64";
+                    $romdata[1] = "n64";
                     break;
 
                 //Visual Boy Formats
