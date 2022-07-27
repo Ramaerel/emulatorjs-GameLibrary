@@ -32,22 +32,27 @@
 </div>
 
 <script type='text/javascript'>
-
+    <?php if (isset($_GET['games'])) {
+            $gid = $_GET['games'];
+        } else {
+            $gid = 0;
+        }
+    ?>
     EJS_player = '#game';
-    EJS_core = <?php echo("'".$gamedata[$_GET['games']]["Console"]."'"); ?>;
-    EJS_gameUrl = <?php echo('"./roms/'.$romlistfin[$_GET['games']].'"'); ?>;
-    <?php if($gamedata[$_GET['games']]["Console"] == "psx") {
+    EJS_core = <?php echo("'".$gamedata[$gid]["Console"]."'"); ?>;
+    EJS_gameUrl = <?php echo('"./roms/'.$romlistfin[$gid].'"'); ?>;
+    <?php if($gamedata[$gid]["Console"] == "psx") {
         echo("EJS_biosUrl = './bios/psx.bin';\r\n");
     }
     ?>
     <?php if($conf["netplay"] == "true") {
-        echo("EJS_gameID = ".$_GET['games'].";\r\n    ");    
+        echo("EJS_gameID = ".$gid.";\r\n");    
     }
     if($conf["beta"] == "true") {
-        echo("EJS_BETA = true;");
+        echo("EJS_BETA = true; \r\n");
     }
     ?>
-EJS_pathtodata = 'data/';
+    EJS_pathtodata = 'data/';
     
 </script>
 
