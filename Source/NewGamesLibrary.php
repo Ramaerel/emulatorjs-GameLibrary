@@ -43,6 +43,9 @@
     <?php if($conf["netplay"] == "true") {
         echo("EJS_gameID = ".$_GET['games'].";\r\n    ");    
     }
+    if($conf["beta"] == "true") {
+        echo("EJS_BETA = true;");
+    }
     ?>
 EJS_pathtodata = 'data/';
     
