@@ -1,5 +1,25 @@
 
 <?php
+
+    function buildRomList($romdir) {
+        $romlist = scandir($romdir);
+
+        for($i=0; $i<count($romlist)-2; $i++) {
+            $romlistfin[$i] = $romlist[$i + 2];
+        }
+
+        echo("<form action='NewGamesLibrary.php' method='GET' style='text-align:center;'><select name='games'>");
+        for($i=0;$i<count($romlistfin);$i++) {
+            $rom[$i] = getRomExtension($romlistfin[$i]);
+            $gamedata[$i]["Name"] = $rom[$i][0];
+            $gamedata[$i]["Console"] = $rom[$i][1];
+            echo("\r\n<option value='".$i."'>".$gamedata[$i]["Name"]." (".$gamedata[$i]["Console"].")</option>");
+        }
+        echo("\r\n</select>\r\n<input type='submit' value='Play'></form>");
+        return $gamedata;
+
+    }
+
     function getRomExtension($rom) {
             $romdata = explode(".", $rom);
             $romdata[2] = $rom;
