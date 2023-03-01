@@ -138,7 +138,7 @@
             ?>
 
             <form action="upload.php" method="post" enctype="multipart/form-data">
-                <label for="rom-files">Select a ROM file:</label>
+                <label for="rom-files">Select a ROM file (Max 20):</label>
                 <br />
                 <input type="file" id="rom-files" name="rom-files[]" multiple>
                 <br />
