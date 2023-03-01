@@ -1,25 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>EJS Library</title>
+        <title>EJSLibrary</title>
         <link rel="stylesheet" type="text/css" href="style.css">
-
-        <?php
-            include 'fnc.php';
-
-            $snes = ["smc", "sfc", "fig", "swc", "bs", "st"];
-            $gba = ["gba"];
-            $gb = ["gb", "gbc", "dmg"];
-            $nes = ["fds", "nes", "unif", "unf"];
-            $vb = ["vb", "vboy"];
-            $nds = ["nds"];
-            $n64 = ["n64", "z64", "v64", "u1", "ndd"];
-
-            $sms = ["sms"];
-            $smd = ["smd", "md"];
-            $gg = ["gg"];
-
-        ?>
+        <?php include 'fnc.php'; ?>
     </head>
 
     <body>
@@ -30,7 +14,7 @@
                 <?php 
                     if (isset($_COOKIE["user"])) {
                         print("
-                            <li><a href='#'>Upload ROMs</a></li>
+                            <li><a href='upload.php'>Upload ROMs</a></li>
                             <li><a href='arcade.php'>Play Games</a></li>
                             <li><a href='logout.php'>Log Out</a></li>
                         ");
@@ -46,107 +30,72 @@
         <br />
         <br />
         <div class="updates">
-            <h1>Upload ROM Files</h1>
+            <div class="grid-container">
+                <?php
+                    // Get console type - Print console select if no console
 
-            <?php
-                if(isset($_COOKIE["user"])) {
-                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                        // Multiple file upload
-                        if ($_FILES['rom-files']['error'][0] == UPLOAD_ERR_OK) {
-                            foreach ($_FILES['rom-files']['tmp_name'] as $key => $tmp_name) {
-                                $name = basename($_FILES['rom-files']['name'][$key]);
-                                $ext = explode(".", $name);
-                                $ext = end($ext);
+                    if ((isset($_GET["console"])) and ($_GET["console"] !== "")) {
+                        buildRomList($_GET["console"]);
 
-                                if (in_array($ext, $snes)) {
-                                    if(!is_dir("users/" . $_COOKIE["user"] . "/roms/snes")) {
-                                        mkdir("users/" . $_COOKIE['user'] . "/roms/snes");
-                                    }  
-                                    move_uploaded_file($tmp_name, "users/" . $_COOKIE["user"] . "/roms/snes/" . $name);
-                                    echo("<p>SNES rom $name successfully uploaded.<br /></p>");
+                    } else {
 
-                                } else if (in_array($ext, $gba)) {
-                                    if(!is_dir("users/" . $_COOKIE["user"] . "/roms/gba")) {
-                                        mkdir("users/" . $_COOKIE['user'] . "/roms/gba");
-                                    }  
-                                    move_uploaded_file($tmp_name, "users/" . $_COOKIE["user"] . "/roms/gba/" . $name);
-                                    echo("<p>GBA rom $name successfully uploaded.<br /></p>");
-                                
-                                } else if (in_array($ext, $gb)) {
-                                    if(!is_dir("users/" . $_COOKIE["user"] . "/roms/gb")) {
-                                        mkdir("users/" . $_COOKIE['user'] . "/roms/gb");
-                                    }  
-                                    move_uploaded_file($tmp_name, "users/" . $_COOKIE["user"] . "/roms/gb/" . $name);
-                                    echo("<p>GB rom $name successfully uploaded.<br /></p>");
+                        if(!is_dir("./users/".$_COOKIE["user"]."/roms/nes/")) { mkdir("./users/".$_COOKIE["user"]."/roms/nes"); }
+                        if(!is_dir("./users/".$_COOKIE["user"]."/roms/snes/")) { mkdir("./users/".$_COOKIE["user"]."/roms/snes"); }
+                        if(!is_dir("./users/".$_COOKIE["user"]."/roms/n64/")) { mkdir("./users/".$_COOKIE["user"]."/roms/n64"); }
+                        if(!is_dir("./users/".$_COOKIE["user"]."/roms/gb/")) { mkdir("./users/".$_COOKIE["user"]."/roms/gb"); }
+                        if(!is_dir("./users/".$_COOKIE["user"]."/roms/gba/")) { mkdir("./users/".$_COOKIE["user"]."/roms/gba"); }
+                        if(!is_dir("./users/".$_COOKIE["user"]."/roms/nds/")) { mkdir("./users/".$_COOKIE["user"]."/roms/nds"); }
+                        if(!is_dir("./users/".$_COOKIE["user"]."/roms/vb/")) { mkdir("./users/".$_COOKIE["user"]."/roms/vb"); }
+                        if(!is_dir("./users/".$_COOKIE["user"]."/roms/segaMS/")) { mkdir("./users/".$_COOKIE["user"]."/roms/segaMS"); }
+                        if(!is_dir("./users/".$_COOKIE["user"]."/roms/segaMD/")) { mkdir("./users/".$_COOKIE["user"]."/roms/segaMD"); }
+                        if(!is_dir("./users/".$_COOKIE["user"]."/roms/segaGG/")) { mkdir("./users/".$_COOKIE["user"]."/roms/segaGG"); }
 
-                                } else if (in_array($ext, $nes)) {
-                                    if(!is_dir("users/" . $_COOKIE["user"] . "/roms/nes")) {
-                                        mkdir("users/" . $_COOKIE['user'] . "/roms/nes");
-                                    }  
-                                    move_uploaded_file($tmp_name, "users/" . $_COOKIE["user"] . "/roms/nes/" . $name);
-                                    echo("<p>NES rom $name successfully uploaded.<br /></p>");
 
-                                } else if (in_array($ext, $vb)) {
-                                    if(!is_dir("users/" . $_COOKIE["user"] . "/roms/vb")) {
-                                        mkdir("users/" . $_COOKIE['user'] . "/roms/vb");
-                                    }  
-                                    move_uploaded_file($tmp_name, "users/" . $_COOKIE["user"] . "/roms/vb/" . $name);
-                                    echo("<p>VB rom $name successfully uploaded.<br /></p>");
+                        if (!(count(scandir("./users/".$_COOKIE["user"]."/roms/nes/")) == 2)) {
+                            echo('<a class="rounded-square" href="./arcade.php?console=nes">Nintendo Entertainment System</a>');
+                        }
 
-                                } else if (in_array($ext, $nds)) {
-                                    if(!is_dir("users/" . $_COOKIE["user"] . "/roms/nds")) {
-                                        mkdir("users/" . $_COOKIE['user'] . "/roms/nds");
-                                    }  
-                                    move_uploaded_file($tmp_name, "users/" . $_COOKIE["user"] . "/roms/nds/" . $name);
-                                    echo("<p>NDS rom $name successfully uploaded.<br /></p>");
-                                    
-                                } else if (in_array($ext, $n64)) {
-                                    if(!is_dir("users/" . $_COOKIE["user"] . "/roms/n64")) {
-                                        mkdir("users/" . $_COOKIE['user'] . "/roms/n64");
-                                    }  
-                                    move_uploaded_file($tmp_name, "users/" . $_COOKIE["user"] . "/roms/n64/" . $name);
-                                    echo("<p>N64 rom $name successfully uploaded.<br /></p>");
+                        if (!(count(scandir("./users/".$_COOKIE["user"]."/roms/snes/")) == 2)) {
+                            echo('<a class="rounded-square" href="./arcade.php?console=snes">Super Nintendo</a>');
+                        }
 
-                                } else if (in_array($ext, $sms)) {
-                                    if(!is_dir("users/" . $_COOKIE["user"] . "/roms/segaMS")) {
-                                        mkdir("users/" . $_COOKIE['user'] . "/roms/segaMS");
-                                    }  
-                                    move_uploaded_file($tmp_name, "users/" . $_COOKIE["user"] . "/roms/segaMS/" . $name);
-                                    echo("<p>SMS rom $name successfully uploaded.<br /></p>");
-                                
-                                } else if (in_array($ext, $smd)) {
-                                    if(!is_dir("users/" . $_COOKIE["user"] . "/roms/segaMD")) {
-                                        mkdir("users/" . $_COOKIE['user'] . "/roms/segaMD");
-                                    }  
-                                    move_uploaded_file($tmp_name, "users/" . $_COOKIE["user"] . "/roms/segaMD/" . $name);
-                                    echo("<p>SMD rom $name successfully uploaded.<br /></p>");
-                                
-                                } else if (in_array($ext, $gg)) {
-                                    if(!is_dir("users/" . $_COOKIE["user"] . "/roms/segaGG")) {
-                                        mkdir("users/" . $_COOKIE['user'] . "/roms/segaGG");
-                                    }  
-                                    move_uploaded_file($tmp_name, "users/" . $_COOKIE["user"] . "/roms/segaGG/" . $name);
-                                    echo("<p>SGG rom $name successfully uploaded.<br /></p>");
+                        if (!(count(scandir("./users/".$_COOKIE["user"]."/roms/n64/")) == 2)) {
+                            echo('<a class="rounded-square" href="./arcade.php?console=n64">Nintendo 64</a>');
+                        }
 
-                                } else {
-                                    print("<p>Error: Unsupported filetype!</p>");
-                                }
-                            }
+                        if (!(count(scandir("./users/".$_COOKIE["user"]."/roms/gb/")) == 2)) {
+                            echo('<a class="rounded-square" href="./arcade.php?console=gb">Game Boy</a>');
+                        }
+
+                        if (!(count(scandir("./users/".$_COOKIE["user"]."/roms/gba/")) == 2)) {
+                            echo('<a class="rounded-square" href="./arcade.php?console=gba">Gameboy Advance</a>');
+                        }
+
+                        if (!(count(scandir("./users/".$_COOKIE["user"]."/roms/nds/")) == 2)) {
+                            echo('<a class="rounded-square" href="./arcade.php?console=nds">Nintendo DS</a>');
+                        }
+
+                        if (!(count(scandir("./users/".$_COOKIE["user"]."/roms/vb/")) == 2)) {
+                            echo('<a class="rounded-square" href="./arcade.php?console=vb">Nintendo Virtual Boy</a>');
+                        }
+                        
+                        if (!(count(scandir("./users/".$_COOKIE["user"]."/roms/segaMS/")) == 2)) {
+                            echo('<a class="rounded-square" href="./arcade.php?console=segaMS">Sega Master System</a>');
+                        }
+                        
+                        if (!(count(scandir("./users/".$_COOKIE["user"]."/roms/segaMD/")) == 2)) {
+                            echo('<a class="rounded-square" href="./arcade.php?console=segaMD">Sega Mega Drive</a>');
+                        }
+
+                        if (!(count(scandir("./users/".$_COOKIE["user"]."/roms/segaGG/")) == 2)) {
+                            echo('<a class="rounded-square" href="./arcade.php?console=nes">Sega Game Gear</a>');
                         }
                     }
-                }
-            ?>
 
-            <form action="upload.php" method="post" enctype="multipart/form-data">
-                <label for="rom-files">Select a ROM file (Max 20):</label>
-                <br />
-                <input type="file" id="rom-files" name="rom-files[]" multiple>
-                <br />
-                <br />
-                <input type="submit" value="Upload">
-            </form>
 
-                
+                    
+                ?>
+            </div>    
         </div>
     </body>
 </html>
