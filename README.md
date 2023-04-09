@@ -3,8 +3,6 @@
 
 *A game library extension for* ***[EmulatorJS]***
 
-An already-hosted online version can be found here: https://temporusweb.com
-
 <br>
 
 This add - on site allows users of EmulatorJS to manage ROMs and family accounts.<br>
