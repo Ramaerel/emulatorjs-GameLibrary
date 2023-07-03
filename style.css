@@ -1,5 +1,7 @@
 body {
-    background-color: #313131;
+    background-color: #3c3c3c;
+    height: 100%;
+    text-align:center;
 }
 
 nav {
@@ -29,27 +31,27 @@ nav a:hover {
     color: #fff;
 }
 
-div.updates {
-    background-color: #5f5f5f;
-    width: 65%;
-    height: 90%;
-    text-align:center;
-    margin:auto;
-    border-radius: 5px;
-}
-  
-input {
-    border-radius: 5px;
-    border-width: 0;
-    background-color: #cecece;
+.linkimg {
+    border-radius: 10px;
+    border-width: 5px;
+    border-style: solid;
+    border-color:#CCCCCC;
+    width: 160px;
+    height: 120px;
+    margin: 20px 20px;
 }
 
-input:hover {
-    background-color: #8d8d8d;
+.linkimg:hover {
+    width: 180px;
+    height: 140px;
+    border-color:#FFFFFF;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
-a.rounded-square {
-    display: inline-block;
+a.link {
+  display: inline-block;
   padding: 10px 20px;
   border-radius: 20px;
   background-color: #747474;
@@ -58,6 +60,14 @@ a.rounded-square {
   margin: 5px;
 }
 
-a.rounded-square:hover {
+a.link:hover {
     background-color: #7e7e7e;
+}
+
+.arcadelist {
+    border-radius: 10px;
+    background-color: #5c5c5c;
+    width: 75%;
+    height: 100%;
+    margin: auto auto;
 }

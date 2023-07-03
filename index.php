@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html>
+
     <head>
-        <title>EJSLibrary</title>
+        <title>EmulatorJS Library - Arcade</title>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
     <body>
+
+        <!-- Navbar -->
         <nav>
             <ul>
-                <li><a href="#">Index</a></li>
-
-                <?php 
-                    if (isset($_COOKIE["user"])) {
-                        print("
-                            <li><a href='upload.php'>Upload ROMs</a></li>
-                            <li><a href='arcade.php'>Play Games</a></li>
-                            <li><a href='logout.php'>Log Out</a></li>
-                        ");
-                    } else {
-                        print("
-                            <li><a href='register.php'>Register</a></li>
-                            <li><a href='login.php'>Login</a></li>
-                        ");
-                    }
-                ?>
+                <li><a href="#">Arcade</a></li>
+                <li><a href="upload.php">Upload</a></li>
             </ul>
         </nav>
-        <br />
-        <br />
-        <div class="updates">
-                <h1>I dunno. Put news or something here.</h1>
 
-                
+        <br />
+        <!-- Game Arcade -->
+        <div class="arcadelist">
+            <?php
+                $files = scandir("./roms/");
+                foreach($files as $file) {
+                    if(!in_array($file, array('.', '..'))) {
+                        $file_url = 'play.php?game=' . urlencode($file);
+                        if (file_exists("./img/$file.png")) {
+                            echo("<a href='".$file_url."'><img class='linkimg' src='img/".$file.".png '/></a>");
+                        } else {
+                            echo("<a href='$file_url' class='link'><p>$file</p></a>");
+                        }
+                        
+                    }
+                }
+            ?>
+        
         </div>
     </body>
 </html>
