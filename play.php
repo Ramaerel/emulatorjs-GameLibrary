@@ -27,8 +27,6 @@
             $ext = explode(".", $name);
             $ext = end($ext);
 
-            $inidata = parse_ini_file("./inis/$name.ini");
-            
             if (in_array($ext, $nes)) { $console = 'nes'; }
             else if (in_array($ext, $snes)) { $console = 'snes'; }
             else if (in_array($ext, $n64)) { $console = 'n64'; }
@@ -44,7 +42,7 @@
 
             else if (in_array($ext, $psx)) { $console = 'psx';};
         ?>
-        <title><?php echo($inidata["name"]); ?></title>
+        <title><?php echo($name); ?></title>
         <style>
             body {
                 background-color: #333;
@@ -76,6 +74,7 @@
                 background-color: #868686;
                 color: #fff;
             }
+
         </style>
     </head>
 
@@ -86,7 +85,7 @@
                 <li><a href="index.php">Arcade</a></li>
                 <li><a href="upload.php">Upload</a></li>
                 <li style="width:10%;"></li>
-                <li><p>Playing: <?php echo($inidata["name"]); ?></p></li>
+                <li><p>Playing: <?php echo($name); ?></p></li>
             </ul>
         </nav>
 
@@ -94,39 +93,67 @@
         <div id='game'></div>
     </div>
 
+    <script type='text/javascript'>
+        EJS_player = '#game';
     <?php
 
-        if (file_exists("./bios/$console.bin")) {
-            $bios = "EJS_biosUrl = './bios/$console.bin';";
+        if (file_exists("./bios/$console.zip")) {
+            $bios = "EJS_biosUrl = './bios/$console.zip';";
         } else {
             $bios = "";
         }
 
-        if ($settings["core"] == "osejs") {
-            echo("
-                <script type='text/javascript'>
-                    EJS_player = '#game';
-                    EJS_core = '$console';
-                    $bios
-                    EJS_gameUrl = '/roms/".$_GET['game']."';
-                    EJS_pathtodata = 'data/';
-                </script>
-                <script src='data/loader.js'></script>
-            ");
-        } else if ($settings["core"] == "ejs") {
-            echo("
-            <script type='text/javascript'>
-                EJS_player = '#game';
-                EJS_gameUrl = '/roms/".$_GET['game']."';
+        echo("
+            
                 EJS_core = '$console';
                 $bios
-                EJS_mouse = false;
-                EJS_multitap = false;
-            </script>
-            <script src='https://www.emulatorjs.com/loader.js'></script>
-            ");
-        }
+                EJS_gameUrl = '/roms/".$_GET['game']."';
+                EJS_pathtodata = 'data/';");
     ?>
-    
+        
+        EJS_onSaveState = function(data) {
+            const stateBlob = new Blob([data.state], { type: "application/octet-stream" });
+            const screenshotBlob = new Blob([data.screenshot], { type: "image/png" });
+            const gameName = "<?php echo($_GET['rom']); ?>";
+
+            const formData = new FormData();
+            formData.append("gameName", gameName); // Add gameName to the form data
+            formData.append("state", stateBlob, `${gameName}.state`); // Construct filename
+            formData.append("screenshot", screenshotBlob, `${gameName}.img`); // Construct filename
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "saveState.php", true);
+            xhr.send(formData);
+            }
+
+            EJS_onLoadState = function() {
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", "./saves/" . $_GET["rom"]); ?>.state", true);
+                xhr.responseType = "arraybuffer"; // Set the response type to arraybuffer
+                    
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        const loadedState = new Uint8Array(xhr.response); // Convert arraybuffer to Uint8Array
+                        EJS_emulator.gameManager.loadState(loadedState);
+                    } else {
+                        console.error("Error loading state");
+                    }
+                };
+
+                xhr.onerror = function() {
+                    console.error("Request failed");
+                };
+
+                xhr.send();
+            };
+
+            xhr.onerror = function() {
+                console.error("Request failed");
+            };
+
+            xhr.send();
+        };
+    </script>
+    <script src='data/loader.js'></script>
     </body>
 </html>

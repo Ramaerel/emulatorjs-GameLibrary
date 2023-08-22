@@ -53,18 +53,7 @@
                             }
                             //Move File
                             move_uploaded_file($tmp_name, "roms/$name");
-                            //Scrape File
-                            if($settings["key"] !== "") {
-                                if(scrape_data($name)) {
-                                    $data = parse_ini_file("./inis/$name.ini");
-                                    print("<p>Uploaded and scraped file: ".$data["name"]."</p><br /><img src='img/$name.png' />");
-                                } else {
-                                    print("<p>File uploaded, scraping failed. Is cURL and CORs enabled?");
-                                }
-                            } else {
-                                print("<p>File successfully uploaded. Scraping failed due to no key error.</p>");
-                            }
-                             }
+                            print("<p>File successfully uploaded. Scraping failed due to no key error.</p>");
                         }
                     }
             ?>
