@@ -56,6 +56,7 @@
                             print("<p>File successfully uploaded. Scraping failed due to no key error.</p>");
                         }
                     }
+                }
             ?>
 
             <form action="upload.php" method="post" enctype="multipart/form-data">
