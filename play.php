@@ -107,14 +107,14 @@
             
                 EJS_core = '$console';
                 $bios
-                EJS_gameUrl = '/roms/".$_GET['game']."';
+                EJS_gameUrl = './roms/".$_GET['game']."';
                 EJS_pathtodata = 'data/';");
     ?>
         
         EJS_onSaveState = function(data) {
             const stateBlob = new Blob([data.state], { type: "application/octet-stream" });
             const screenshotBlob = new Blob([data.screenshot], { type: "image/png" });
-            const gameName = "<?php echo($_GET['rom']); ?>";
+            const gameName = "<?php echo($_GET['game']); ?>";
 
             const formData = new FormData();
             formData.append("gameName", gameName); // Add gameName to the form data
@@ -128,7 +128,7 @@
 
             EJS_onLoadState = function() {
                 const xhr = new XMLHttpRequest();
-                xhr.open("GET", "./saves/" . $_GET["rom"]); ?>.state", true);
+                xhr.open("GET", <?php echo('"./saves/' . $_GET["game"]); ?>.state", true);
                 xhr.responseType = "arraybuffer"; // Set the response type to arraybuffer
                     
                 xhr.onload = function() {
@@ -143,9 +143,6 @@
                 xhr.onerror = function() {
                     console.error("Request failed");
                 };
-
-                xhr.send();
-            };
 
             xhr.onerror = function() {
                 console.error("Request failed");
