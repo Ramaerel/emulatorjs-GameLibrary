@@ -22,8 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         fclose($screenshotHandle);
 
         // Save the data to files with dynamic filenames
-        file_put_contents("./saves/{$gameName}.state", $stateData);
-        file_put_contents("./img/{$gameName}.png", $screenshotData);
+        file_put_contents("./saves/{$gameName}.state", $stateData, LOCK_EX);
+        file_put_contents("./img/{$gameName}.png", $screenshotData, LOCK_EX);
 
         echo "Data saved successfully!";
     } else {
