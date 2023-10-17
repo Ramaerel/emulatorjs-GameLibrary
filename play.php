@@ -27,6 +27,18 @@
             $ext = explode(".", $name);
             $ext = end($ext);
 
+            //for zipfile
+            if ($ext=='zip'){
+                include_once('pclzip.lib.php');
+                $zip = new PclZip($name);
+                $contents = $zip->listContent();
+                foreach ($contents as $content) {
+                    $names=$content['filename'];
+                    $ext = explode(".", $names);
+                    $ext = end($ext);
+                }
+            }
+
             if (in_array($ext, $nes)) { $console = 'nes'; }
             else if (in_array($ext, $snes)) { $console = 'snes'; }
             else if (in_array($ext, $n64)) { $console = 'n64'; }
