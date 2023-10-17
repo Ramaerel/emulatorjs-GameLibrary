@@ -7,19 +7,19 @@
 
             //Write system extension arrays
             //  Nintendo
-            $snes = ["smc", "sfc", "fig", "swc", "bs", "st", "zip"];
-            $gba = ["gba", "zip"];
-            $gb = ["gb", "gbc", "dmg", "zip"];
-            $nes = ["fds", "nes", "unif", "unf", "zip"];
-            $vb = ["vb", "vboy", "zip"];
-            $nds = ["nds", "zip"];
-            $n64 = ["n64", "z64", "v64", "u1", "ndd", "zip"];
+            $snes = ["smc", "sfc", "fig", "swc", "bs", "st"];
+            $gba = ["gba"];
+            $gb = ["gb", "gbc", "dmg"];
+            $nes = ["fds", "nes", "unif", "unf"];
+            $vb = ["vb", "vboy"];
+            $nds = ["nds"];
+            $n64 = ["n64", "z64", "v64", "u1", "ndd"];
             //  Sega
-            $sms = ["sms", "zip"];
-            $smd = ["smd", "md", "zip"];
-            $gg = ["gg", "zip"];
+            $sms = ["sms"];
+            $smd = ["smd", "md"];
+            $gg = ["gg"];
             //  Other
-            $psx = ["pbp", "chd", "zip"];
+            $psx = ["pbp", "chd"];
 
 
             //Find console
@@ -31,7 +31,7 @@
             //select firstfile in zip
             if ($ext=='zip'){
                 include_once('pclzip.lib.php');
-                $zip = new PclZip($name);
+                $zip = new PclZip("roms/".$name);
                 $contents = $zip->listContent();
                 $names=$contents[0]['filename'];
                 $ext = explode(".", $names);
