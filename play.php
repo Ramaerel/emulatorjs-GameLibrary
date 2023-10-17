@@ -7,8 +7,8 @@
 
             //Write system extension arrays
             //  Nintendo
-            $snes = ["smc", "sfc", "fig", "swc", "bs", "st"];
-            $gba = ["gba"];
+            $snes = ["smc", "sfc", "fig", "swc", "bs", "st", "zip"];
+            $gba = ["gba", "zip"];
             $gb = ["gb", "gbc", "dmg"];
             $nes = ["fds", "nes", "unif", "unf"];
             $vb = ["vb", "vboy"];
@@ -24,20 +24,18 @@
 
             //Find console
             $name = basename($_GET['game']);
-            $ext = explode(".", $name);
-            $ext = end($ext);
-
+            $ext0 = explode(".", $name);
+            $ext = strtolower(end($ext0));
             //for zipfile
-            //select firstfile in zip
             if ($ext=='zip'){
-                include_once('pclzip.lib.php');
-                $zip = new PclZip("roms/".$name);
-                $contents = $zip->listContent();
-                $names=$contents[0]['filename'];
-                $ext = explode(".", $names);
-                $ext = end($ext);
+				$zip = new ZipArchive;
+				if ($zip->open("roms/".$name))
+				{
+					$names =$zip->getNameIndex(0);
+					$ext0 = explode(".", $names);
+					$ext = strtolower(end($ext0));
+				}
             }
-
             if (in_array($ext, $nes)) { $console = 'nes'; }
             else if (in_array($ext, $snes)) { $console = 'snes'; }
             else if (in_array($ext, $n64)) { $console = 'n64'; }
@@ -93,7 +91,7 @@
 
         <nav>
             <ul>
-                <li><a href="index.php">Arcade</a></li>
+                <li><a href="menu.php">Arcade</a></li>
                 <li><a href="upload.php">Upload</a></li>
                 <li style="width:10%;"></li>
                 <li><p>Playing: <?php echo($name); ?></p></li>
