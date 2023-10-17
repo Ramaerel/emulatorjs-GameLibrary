@@ -93,7 +93,7 @@
 
         <nav>
             <ul>
-                <li><a href="menu.php">Arcade</a></li>
+                <li><a href="index.php">Arcade</a></li>
                 <li><a href="upload.php">Upload</a></li>
                 <li style="width:10%;"></li>
                 <li><p>Playing: <?php echo($name); ?></p></li>
