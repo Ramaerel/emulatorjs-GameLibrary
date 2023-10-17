@@ -33,10 +33,9 @@
                 include_once('pclzip.lib.php');
                 $zip = new PclZip($name);
                 $contents = $zip->listContent();
-                $names=$contents[0]['filename']
+                $names=$contents[0]['filename'];
                 $ext = explode(".", $names);
                 $ext = end($ext);
-                }
             }
 
             if (in_array($ext, $nes)) { $console = 'nes'; }
