@@ -12,7 +12,7 @@
             $gb = ["gb", "gbc", "dmg", "zip"];
             $nes = ["fds", "nes", "unif", "unf", "zip"];
             $vb = ["vb", "vboy", "zip"];
-            $nds = ["nds", ,"zip"];
+            $nds = ["nds", "zip"];
             $n64 = ["n64", "z64", "v64", "u1", "ndd", "zip"];
             //  Sega
             $sms = ["sms", "zip"];
