@@ -7,19 +7,19 @@
 
             //Write system extension arrays
             //  Nintendo
-            $snes = ["smc", "sfc", "fig", "swc", "bs", "st"];
-            $gba = ["gba"];
-            $gb = ["gb", "gbc", "dmg"];
-            $nes = ["fds", "nes", "unif", "unf"];
-            $vb = ["vb", "vboy"];
-            $nds = ["nds"];
-            $n64 = ["n64", "z64", "v64", "u1", "ndd"];
+            $snes = ["smc", "sfc", "fig", "swc", "bs", "st", "zip"];
+            $gba = ["gba", "zip"];
+            $gb = ["gb", "gbc", "dmg", "zip"];
+            $nes = ["fds", "nes", "unif", "unf", "zip"];
+            $vb = ["vb", "vboy", "zip"];
+            $nds = ["nds", ,"zip"];
+            $n64 = ["n64", "z64", "v64", "u1", "ndd", "zip"];
             //  Sega
-            $sms = ["sms"];
-            $smd = ["smd", "md"];
-            $gg = ["gg"];
+            $sms = ["sms", "zip"];
+            $smd = ["smd", "md", "zip"];
+            $gg = ["gg", "zip"];
             //  Other
-            $psx = ["pbp", "chd"];
+            $psx = ["pbp", "chd", "zip"];
 
 
             //Find console
