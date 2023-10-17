@@ -7,8 +7,8 @@
 
             //Write system extension arrays
             //  Nintendo
-            $snes = ["smc", "sfc", "fig", "swc", "bs", "st", "zip"];
-            $gba = ["gba", "zip"];
+            $snes = ["smc", "sfc", "fig", "swc", "bs", "st"];
+            $gba = ["gba"];
             $gb = ["gb", "gbc", "dmg"];
             $nes = ["fds", "nes", "unif", "unf"];
             $vb = ["vb", "vboy"];
@@ -24,17 +24,18 @@
 
             //Find console
             $name = basename($_GET['game']);
-            $ext0 = explode(".", $name);
-            $ext = strtolower(end($ext0));
+            $ext = explode(".", $name);
+            $ext = strtolower(end($ext));
+
             //for zipfile
             if ($ext=='zip'){
-				$zip = new ZipArchive;
-				if ($zip->open("roms/".$name))
-				{
-					$names =$zip->getNameIndex(0);
-					$ext0 = explode(".", $names);
-					$ext = strtolower(end($ext0));
-				}
+		$zip = new ZipArchive;
+		if ($zip->open("roms/".$name))
+		{
+			$names =$zip->getNameIndex(0);
+			$ext0 = explode(".", $names);
+			$ext = strtolower(end($ext));
+		}
             }
             if (in_array($ext, $nes)) { $console = 'nes'; }
             else if (in_array($ext, $snes)) { $console = 'snes'; }
