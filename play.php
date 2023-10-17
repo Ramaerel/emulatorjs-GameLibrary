@@ -37,6 +37,7 @@
 			$ext = strtolower(end($ext));
 		}
             }
+
             if (in_array($ext, $nes)) { $console = 'nes'; }
             else if (in_array($ext, $snes)) { $console = 'snes'; }
             else if (in_array($ext, $n64)) { $console = 'n64'; }
