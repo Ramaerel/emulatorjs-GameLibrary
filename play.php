@@ -28,14 +28,14 @@
             $ext = end($ext);
 
             //for zipfile
+            //select firstfile in zip
             if ($ext=='zip'){
                 include_once('pclzip.lib.php');
                 $zip = new PclZip($name);
                 $contents = $zip->listContent();
-                foreach ($contents as $content) {
-                    $names=$content['filename'];
-                    $ext = explode(".", $names);
-                    $ext = end($ext);
+                $names=$contents[0]['filename']
+                $ext = explode(".", $names);
+                $ext = end($ext);
                 }
             }
 
