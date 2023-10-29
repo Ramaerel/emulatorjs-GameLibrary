@@ -25,7 +25,18 @@
             //Find console
             $name = basename($_GET['game']);
             $ext = explode(".", $name);
-            $ext = end($ext);
+            $ext = strtolower(end($ext));
+
+            //for zipfile
+            if ($ext=='zip'){
+		$zip = new ZipArchive;
+		if ($zip->open("roms/".$name))
+		{
+			$names =$zip->getNameIndex(0);
+			$ext0 = explode(".", $names);
+			$ext = strtolower(end($ext));
+		}
+            }
 
             if (in_array($ext, $nes)) { $console = 'nes'; }
             else if (in_array($ext, $snes)) { $console = 'snes'; }
