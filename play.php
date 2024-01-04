@@ -34,7 +34,7 @@
 		{
 			$names =$zip->getNameIndex(0);
 			$ext0 = explode(".", $names);
-			$ext = strtolower(end($ext));
+			$ext = strtolower(end($ext0));
 		}
             }
 
