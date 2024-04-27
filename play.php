@@ -119,7 +119,7 @@
                 EJS_core = '$console';
                 $bios
                 EJS_gameUrl = './roms/".$_GET['game']."';
-                EJS_pathtodata = 'data/';");
+                EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';");
     ?>
         
         EJS_onSaveState = function(data) {
@@ -162,6 +162,6 @@
             xhr.send();
         };
     </script>
-    <script src='data/loader.js'></script>
+    <script src='https://cdn.emulatorjs.org/stable/data/loader.js'></script>
     </body>
 </html>
