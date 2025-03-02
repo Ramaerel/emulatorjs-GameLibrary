@@ -26,6 +26,12 @@ To add BIOs for the systems that require it, simply<br />
 add the BIOs to a ZIP file and rename it to *console name*.zip.<br />
 For example, the gba bios would be kept as /bios/gba.zip <br />
 
+## Search function and folders
+
+Now uses folders (nes, sms, snes, gen, gg, vb, gb, gbc, gba, n64, nds, psx) to organize roms into consoles.<br>
+Folders in the 'img', roms' and 'saves' directories need to be named the same. eg. img/nes, roms/nes, saves/nes <br>
+New search function for quickly finding a game in your library.<br>
+
 <!----------------------------------------------------------------------------->
 
 [Badge License]: https://img.shields.io/badge/license-GPL-blue
