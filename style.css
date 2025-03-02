@@ -6,7 +6,7 @@ body {
 
 nav {
     background-color: #5f5f5f;
-    border-radius: 5px;
+    border-radius: 1px;
 }
   
 nav ul {
@@ -20,7 +20,6 @@ nav ul {
   
 nav a {
     display: block;
-    padding: 1rem;
     text-decoration: none;
     color: #c5c5c5;
     border-radius: 5px;
@@ -36,9 +35,10 @@ nav a:hover {
     border-width: 5px;
     border-style: solid;
     border-color:#CCCCCC;
+    background-color: #111;
     width: 160px;
     height: 120px;
-    margin: 20px 20px;
+    margin: 10px 10px;
 }
 
 .linkimg:hover {
@@ -52,12 +52,10 @@ nav a:hover {
 
 a.link {
   display: inline-block;
-  padding: 10px 20px;
-  border-radius: 20px;
-  background-color: #747474;
+  padding: 1rem;
+  border-radius: 5px;
   color: #d3d3d3;
   text-decoration: none;
-  margin: 5px;
 }
 
 a.link:hover {
@@ -65,9 +63,19 @@ a.link:hover {
 }
 
 .arcadelist {
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #5c5c5c;
     width: 75%;
     height: 100%;
     margin: auto auto;
+}
+
+.arcadelist a.link {
+    display: inline-block;
+    padding: 10px 10px;
+    border-radius: 5px;
+    background-color: #747474;
+    color: #d3d3d3;
+    text-decoration: none;
+    margin: 5px;
 }

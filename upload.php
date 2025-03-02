@@ -9,12 +9,7 @@
     <body>
 
         <!-- Navbar -->
-        <nav>
-            <ul>
-                <li><a href="index.php">Arcade</a></li>
-                <li><a href="#">Upload</a></li>
-            </ul>
-        </nav>
+        <?php include 'navbar.php'; ?>
 
         <br />
         <!-- Game Arcade -->
@@ -30,7 +25,8 @@
                 //  Nintendo
                 $snes = ["smc", "sfc", "fig", "swc", "bs", "st"];
                 $gba = ["gba"];
-                $gb = ["gb", "gbc", "dmg"];
+                $gb = ["gb", "dmg"];
+                $gbc = ["gbc"];
                 $nes = ["fds", "nes", "unif", "unf"];
                 $vb = ["vb", "vboy"];
                 $nds = ["nds"];
@@ -39,6 +35,8 @@
                 $sms = ["sms"];
                 $smd = ["smd", "md"];
                 $gg = ["gg"];
+                //  Playstation
+                $psx = ["chd", "pbp"];
 
                 //Upload functionality
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -51,9 +49,48 @@
                             if(!is_dir("roms")) {
                                 mkdir("roms");
                             }
-                            //Move File
-                            move_uploaded_file($tmp_name, "roms/$name");
-                            print("<p>File successfully uploaded. Scraping failed due to no key error.</p>");
+
+                            // find console to mkdir and move to correct folder
+                            switch (true){
+                                case in_array($ext, $snes):
+                                    $console = 'snes';                                    
+                                    break;
+                                case in_array($ext, $gba):
+                                    $console = 'gba';
+                                    break;
+                                case in_array($ext, $gb):
+                                    $console = 'gb';
+                                    break;
+                                case in_array($ext, $nes):
+                                    $console = 'nes';
+                                    break;
+                                case in_array($ext, $vb):
+                                    $console = 'vb';
+                                    break;
+                                case in_array($ext, $nds):
+                                    $console = 'nds';
+                                    break;
+                                case in_array($ext, $n64):
+                                    $console = 'n64';
+                                    break;
+                                case in_array($ext, $sms):
+                                    $console = 'sms';
+                                    break;
+                                case in_array($ext, $smd):
+                                    $console = 'gen';                                   
+                                    break;
+                                case in_array($ext, $gg):
+                                    $console = 'gg';
+                                    break;
+                                case in_array($ext, $psx):
+                                    $console = 'psx';
+                                    break;
+                            }
+
+                            // make dir and Move File
+                            if(!is_dir("roms/$console")) mkdir("roms/$console");
+                            move_uploaded_file($tmp_name, "roms/$console/$name");
+                            print("<p><font style='text-transform:uppercase;'>[$console]</font> $name successfully uploaded.</p>");
                         }
                     }
                 }

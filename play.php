@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
         <?php
 
             $settings = parse_ini_file("./settings.ini");
@@ -55,9 +56,6 @@
         ?>
         <title><?php echo($name); ?></title>
         <style>
-            body {
-                background-color: #333;
-            }
 
             nav {
                 background-color: #5f5f5f;
@@ -93,8 +91,13 @@
 
         <nav>
             <ul>
-                <li><a href="index.php">Arcade</a></li>
-                <li><a href="upload.php">Upload</a></li>
+            <li><a href=".." class='link'>home</a></li>
+            <li><a href='upload.php' class='link'>upload</a></li>
+            <?php
+            	foreach (array_diff(scandir("./roms"), array('..','.')) as $folder) {
+        	    	echo("<li><a href='$folder' class='link'>$folder</a></li>");
+        	    }
+            ?>
                 <li style="width:10%;"></li>
                 <li><p>Playing: <?php echo($name); ?></p></li>
             </ul>
@@ -119,7 +122,7 @@
                 EJS_core = '$console';
                 $bios
                 EJS_gameUrl = './roms/".$_GET['game']."';
-                EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';");
+                EJS_pathtodata = './data/';");
     ?>
         
         EJS_onSaveState = function(data) {
@@ -162,6 +165,6 @@
             xhr.send();
         };
     </script>
-    <script src='https://cdn.emulatorjs.org/stable/data/loader.js'></script>
+    <script src='./data/loader.js'></script>
     </body>
 </html>
