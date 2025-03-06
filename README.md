@@ -91,7 +91,24 @@ This project is no longer actively maintained. For similar functionality with pr
 License
 RetroHub is released under the GPL license.
 
-### Credits
+## Screenshots
+### Library (Main Page)
+![Library](./Library.PNG)
+<br>
+### Upload ROMs
+![Upload_ROMs](./Upload.PNG)
+<br>
+### Upload BIOS
+![Upload_BIOs](./Bios.PNG)
+<br>
+### Settings (Profile Management)
+![Settings](./Settings.PNG)
+<br>
+### Game Screen
+![Game_1](./Game1.PNG)
+![Game_2](./Game2.PNG)
+
+## Credits
 
 EmulatorJS - Emulation core  <br>
 RetroAchievements - Game metadata and images
