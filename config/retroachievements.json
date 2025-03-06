@@ -1,0 +1,8 @@
+{
+    "enabled": true,
+    "override_local_images": false,
+    "mode": "direct",
+    "username": "YOUR USERNAME",
+    "api_key": "YOUR API KEY",
+    "proxy_url": "https:\/\/temporus.one\/backend\/raproxy.php"
+}
