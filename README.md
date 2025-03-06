@@ -93,7 +93,7 @@ RetroHub is released under the GPL license.
 
 ### Credits
 
-EmulatorJS - Emulation core
+EmulatorJS - Emulation core  <br>
 RetroAchievements - Game metadata and images
 
 [Badge License]: https://img.shields.io/badge/license-GPL-blue
